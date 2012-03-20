@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+	<table name="jos_oauth_clients">
+		<column>client_id</column>
+		<column>key</column>
+		<column>alias</column>
+		<column>secret</column>
+		<column>title</column>
+		<row>
+			<value>1</value>
+			<value>235f9654c4ee18e94bed3815b5346590</value>
+			<value>client1</value>
+			<value>a9350571fdf39840bcb8e9b86bdd855d</value>
+			<value>Renamed Client Application 1</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>179e78686b04e5ac92c1a4066bb68937</value>
+			<value>client2</value>
+			<value>97be26b1e9d662d12c904c538319dad7</value>
+			<value>Client Application 2</value>
+		</row>
+	</table>
+</dataset>

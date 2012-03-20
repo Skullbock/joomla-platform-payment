@@ -299,6 +299,42 @@ CREATE TABLE `jos_modules_menu` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jos_oauth_clients`
+--
+
+CREATE TABLE `jos_oauth_clients` (
+  `client_id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `key` TEXT NOT NULL DEFAULT '',
+  `alias` TEXT NOT NULL DEFAULT '',
+  `secret` TEXT NOT NULL DEFAULT '',
+  `title` TEXT NOT NULL DEFAULT '',
+  CONSTRAINT `idx_oauth_clients_key` UNIQUE (`key`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jos_oauth_credentials`
+--
+
+CREATE TABLE `jos_oauth_credentials` (
+  `credentials_id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `key` TEXT NOT NULL DEFAULT '',
+  `secret` TEXT NOT NULL DEFAULT '',
+  `client_key` TEXT NOT NULL DEFAULT '',
+  `type` TEXT NOT NULL DEFAULT '',
+  `callback_url` TEXT NOT NULL DEFAULT '',
+  `verifier_key` TEXT NOT NULL DEFAULT '',
+  `resource_owner_id` INTEGER NOT NULL DEFAULT '0',
+  `expiration_date` TEXT NOT NULL DEFAULT '0000-00-00 00:00:00',
+  CONSTRAINT `idx_oauth_credentials_key` UNIQUE (`key`)
+);
+
+CREATE INDEX `idx_oauth_credentials_expiry` ON `jos_oauth_credentials` (`expiration_date`);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jos_schemas`
 --
 
