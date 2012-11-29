@@ -34,4 +34,23 @@ abstract class JPaymentProcessorDirect extends JPaymentProcessorBase
 
 		$this->card = $card;
 	}
+
+	/**
+	 * Verify the data before sending it to the payment processor
+	 *
+	 * @return JPaymentProcessor $this for chaining support
+	 *
+	 * @throws JPaymentException If the card data is not valid
+	 */
+	public function verify() 
+	{
+		if ($this->card && $this->card->isValid()) 
+		{
+			return $this;
+		} 
+		else 
+		{
+			throw new JPaymentException('Card not Valid');
+		}
+	}
 }

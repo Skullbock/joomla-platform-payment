@@ -26,9 +26,18 @@ interface JPaymentProcessor
 	public function __construct();
 
 	/**
+	 * Verify the data before sending it to the payment processor
+	 *
+	 * @return JPaymentProcessor $this for chaining support
+	 *
+	 * @throws JPaymentException If the data is not valid
+	 */
+	public function verify();
+
+	/**
 	 * Process the payment
 	 *
-	 * @return JPayment An object representing the transaction
+	 * @return JPaymentResponse An object representing the transaction
 	 */
 	public function process();
 }

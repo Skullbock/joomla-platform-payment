@@ -6,29 +6,93 @@ The *Payment* package is meant to be used as a low level implementation for paym
 Usage Examples
 ==============
 
-    <?php
-    class JPaymentProcessor2Checkout extends JPaymentProcessorDirect {
-    	public function process()
-    	{
-    		.....
-    	}
+```php
+<?php
+// Custom payment processors
+class JPaymentProcessor2Checkout extends JPaymentProcessorDirect {
+	public function verify()
+    {
+        $result = parent::verify();
+        // verify some extra conditions
     }
 
-    $data = new JPaymentData();
-    $data->amount	= 123.12;
-    $data->currency	= 'USD';
-    $data->email	= 'text@example.com';
-    .....
+    public function process()
+	{
+		// Do something with the credit card here
+	}
+}
 
-    $card = new JPaymentCard();
-    $card->number 			= '1111222233334444';
-    $card->expirationMonth 	= '12';
-    $card->expirationYear 	= '2013';
+class JPaymentProcessorPaypal extends JPaymentProcessorIndirect {
+	public function verify()
+    {
+        $result = parent::verify();
+        // verify some extra conditions
+    }
 
-    $processor = new JPaymentProcessor2Checkout($data, $card);
-    $payment = $processor->process();
+    public function process()
+	{
+		// Do something with paypal response here
+	}
 
-    switch ($payment->status) {
-    	....
-    } 
-    ?>
+	public function getUrl()
+	{
+		return 'https://www.paypal.com/cgi-bin/';
+	}
+
+	public function getData()
+	{
+		$data = new JPaymentRequest();
+		$data->mc_gross = 123.12;
+		$data->email = 'info@example.com';
+
+		return $data;
+	}
+}
+
+// Direct Example
+$data = new JPaymentData();
+$data->amount	= 123.12;
+$data->currency	= 'USD';
+$data->email	= 'text@example.com';
+
+$card = new JPaymentCard();
+$card->number 			= '1111222233334444';
+$card->expirationMonth 	= '12';
+$card->expirationYear 	= '2013';
+
+$processor = new JPaymentProcessor2Checkout($data, $card);
+try {
+	// JPaymentResponse here
+	$payment = $processor->process();
+} catch(JPaymentException $e) {
+	// deal with errors here
+}
+
+
+// Indirect Example
+$data = new JPaymentData();
+$data->amount	= 123.12;
+$data->currency	= 'USD';
+$data->email	= 'text@example.com';
+
+$processor = new JPaymentProcessorPaypal($data);
+try {
+	// JHttpResponse here
+	$payment = $processor->sendRequest();
+} catch(JPaymentException $e) {
+	// deal with errors here
+}
+
+....
+// and where the callback is managed
+try {
+	$data = array('reponse' => 'from', 'the' => 'processor');
+	// JPaymentResponse here
+	$response = $processor->process($data);
+} catch(JPaymentException $e) {
+	// deal with errors here
+}
+
+
+?>
+```

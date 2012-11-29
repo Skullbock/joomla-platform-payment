@@ -19,22 +19,22 @@ defined('JPATH_PLATFORM') or die;
 abstract class JPaymentProcessorBase implements JPaymentProcessor
 {
 	/**
-	 * @var JPaymentData The payment data to be used for processing
+	 * @var JPaymentRequest The payment data to be used for processing
 	 */
 	protected $data;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param 	JPaymentData	$data The payment data to be used for processing
+	 * @param 	JPaymentRequest	$data The payment data to be used for processing
 	 * @since   12.1
 	 */
-	public function __construct(JPaymentData $data);
+	public function __construct(JPaymentRequest $data);
 
 	/**
 	 * Process the payment
 	 *
-	 * @return JPayment An object representing the transaction
+	 * @return JPaymentResponse An object representing the transaction
 	 */
 	public function process();
 }

@@ -10,26 +10,13 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Placeholder object to store data to pass to a payment processor
+ * Payment Exception class
  *
  * @package     Joomla.Platform
  * @subpackage  Payment
  * @since       12.1
  */
-class JPaymentData extends JRegistry
+class JPaymentException extends RuntimeException
 {
-	/**
-	 * @var float  The transaction amount to be processed
-	 */
-	public 		$amount;
-
-	/**
-	 * @var string The currency ISOCODE
-	 */
-	public 		$currency;
-
-	/**
-	 * @var JRegistry	Extra data useful for the payment processor
-	 */
-	protected	$data;
+	
 }

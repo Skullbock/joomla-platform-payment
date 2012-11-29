@@ -17,29 +17,22 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Payment
  * @since       12.1
  */
-abstract class JPayment
+class JPaymentResponse extends JRegistry
 {
 	/**
-	 * @var    float  The total amount of the transaction.
-	 * @since  12.1
+	 * Constructor
+	 *
+	 * @param   mixed  $data  The data to bind to the new JRegistry object.
+	 *
+	 * @since   11.1
 	 */
-	public $amount;
+	public function __construct($data = null)
+	{
+		// Construct JRegistry
+		parent::__construct($data);
 
-	/**
-	 * @var    string  The unique transaction id of the payment
-	 * @since  12.1
-	 */
-	public $transactionId;
-
-	/**
-	 * @var    string  The result status of the payment
-	 * @since  12.1
-	 */
-	public $status;
-
-	/**
-	 * @var JRegistry  Any extra information regarding the transaction
-	 * @since 12.1
-	 */
-	public $data;
+		// Set default data
+		$this->amount 	= 0;
+		$this->status 	= false;
+	}
 }
