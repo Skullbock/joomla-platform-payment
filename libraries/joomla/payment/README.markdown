@@ -62,8 +62,10 @@ $card->expirationYear 	= '2013';
 
 $processor = new JPaymentProcessor2Checkout($data, $card);
 try {
-	// JPaymentResponse here
-	$payment = $processor->process();
+	// JHttpResponse here
+	$request = $processor->request();
+	// JPaymentResposne here
+	$response = $processor->process();
 } catch(JPaymentException $e) {
 	// deal with errors here
 }
@@ -78,7 +80,7 @@ $data->email	= 'text@example.com';
 $processor = new JPaymentProcessorPaypal($data);
 try {
 	// JHttpResponse here
-	$payment = $processor->sendRequest();
+	$payment = $processor->request();
 } catch(JPaymentException $e) {
 	// deal with errors here
 }

@@ -37,4 +37,11 @@ abstract class JPaymentProcessorBase implements JPaymentProcessor
 	 * @return JPaymentResponse An object representing the transaction
 	 */
 	public function process();
+
+	/**
+	 * Send the request to the processor url
+	 *
+	 * @return JHttpResponse The response from the url
+	 */
+	public function request();
 }

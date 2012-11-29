@@ -16,7 +16,7 @@ defined('JPATH_PLATFORM') or die;
  * @subpackage  Payment
  * @since       12.1
  */
-abstract class JPaymentProcessorDirect extends JPaymentProcessorBase
+abstract class JPaymentProcessorIndirect extends JPaymentProcessorBase
 {
 	/**
 	 * HTTP method to use to send the data to the processor url. Default: POST
@@ -72,7 +72,7 @@ abstract class JPaymentProcessorDirect extends JPaymentProcessorBase
 	 *
 	 * @return JHttpResponse The response from the url
 	 */
-	public function sendRequest()
+	public function request()
 	{
 		$this->verify();
 
