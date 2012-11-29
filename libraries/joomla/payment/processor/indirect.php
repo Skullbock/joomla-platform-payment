@@ -87,11 +87,4 @@ abstract class JPaymentProcessorIndirect extends JPaymentProcessorBase
 			return $http->post($this->getUrl(), $this->getData());
 		}
 	}
-
-	/**
-	 * Process the payment response
-	 *
-	 * @return JPaymentResponse An object representing the transaction
-	 */
-	public function process($data = null);
 }
